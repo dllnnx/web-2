@@ -1,0 +1,51 @@
+plugins {
+    id("java")
+}
+
+group = "org.example"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.9.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'ru.dllnnx.web.Main'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    archiveFileName = 'server.jar'
+}
+
+def remoteHost = "helios.cs.ifmo.ru"
+def remoteUser = "s408536"
+def remoteDir = "~/web-2/"
+
+def jarFile = "build/libs/server.jar"
+
+tasks.register('copyJarToServer', Exec) {
+    dependsOn jar
+
+    doLast {
+        println "Copying JAR to ${remoteUser}@${remoteHost}:${remoteDir}"
+    }
+
+    commandLine 'scp', "-P 2222" , jarFile, "${remoteUser}@${remoteHost}:${remoteDir}"
+
+    doLast {
+        println 'JAR file copied successfully.'
+    }
+}
