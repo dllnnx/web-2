@@ -1,4 +1,4 @@
-package ru.dllnnx.web2;
+package ru.dllnnx.web2.validation;
 
 import jakarta.servlet.http.HttpServletRequest;
 import ru.dllnnx.web2.bean.Result;

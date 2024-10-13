@@ -4,7 +4,6 @@ plugins {
 }
 
 group = "org.example"
-version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -21,18 +20,6 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
-}
-
-jar {
-    manifest {
-        attributes(
-                'Main-Class': 'ru.dllnnx.web2.Main'
-        )
-    }
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-    archiveFileName = 'server.jar'
 }
 
 def remoteHost = "helios.cs.ifmo.ru"
@@ -56,6 +43,6 @@ tasks.register('copyWarToServer', Exec) {
     commandLine 'scp', "-P 2222" , warFile, "${remoteUser}@${remoteHost}:${remoteDir}"
 
     doLast {
-        println 'JAR file copied successfully.'
+        println 'WAR file copied successfully.'
     }
 }

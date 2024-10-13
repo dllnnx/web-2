@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import ru.dllnnx.web2.Validator;
+import ru.dllnnx.web2.validation.Validator;
 import ru.dllnnx.web2.bean.Result;
 import ru.dllnnx.web2.bean.ResultBean;
 
