@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const submitButton = document.getElementById("submit-button");
     const clearButton = document.getElementById("clear-button");
     const yInput = document.getElementById("Y-choice");
+    const rInput = document.getElementById("R-choice")
     const xRadios = document.querySelectorAll('#X-choice input[type="radio"]');
-    const rCheckboxes = document.querySelectorAll('#R-choice input[type="checkbox"]');
     const resultTable = document.getElementById("result-table");
 
 
@@ -41,12 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function handleSubmit() {
         const y = yInput.value;
-        if (!validateXChoice() || !validateYInput(y) || !validateRChoice()) {
+        const r = rInput.value;
+        if (!validateXChoice() || !validateYInput(y) || !validateRInput(r)) {
             return;
         }
         const x = document.querySelector('input[name="X-radio-group"]:checked').value;
-        const selectedRs = document.querySelectorAll('input[name="R-checkbox-group"]:checked');
-        const r = selectedRs[selectedRs.length - 1].value;
         sendRequest(x, y, r);
     }
     submitButton.addEventListener("click", handleSubmit);
@@ -56,25 +55,32 @@ document.addEventListener('DOMContentLoaded', function () {
     function clearSelection() {
         xRadios.forEach(radio => radio.checked = false);
         yInput.value = '';
-        rCheckboxes.forEach(checkbox => checkbox.checked = false);
+        rInput.value = '';
         canvasPrinter.redrawAll(0);
     }
     clearButton.addEventListener("click", clearSelection);
 
 
     // отрисовка канвы при изменении R
-    let lastChecked = null;
-    function handleCheckboxChange(event) {
-        const currentCheckbox = event.target;
-        if (lastChecked && lastChecked !== currentCheckbox) {
-            lastChecked.checked = false;
+    rInput.addEventListener('input', function () {
+        if (validateRInput(this.value)) canvasPrinter.redrawAll(this.value);
+        const parts = this.value.split('.');
+        if (parts[1] && parts[1].length > 3) {
+            parts[1] = parts[1].slice(0, 3); // обрезаем до 3 знаков после запятой
+            this.value = parts.join('.');
         }
-        lastChecked = currentCheckbox.checked ? currentCheckbox : null;
-        canvasPrinter.redrawAll(currentCheckbox.value);
-    }
-    rCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', handleCheckboxChange);
+        if (this.value === '') canvasPrinter.redrawAll(0);
     });
+
+    yInput.addEventListener('input', function () {
+        validateYInput(this.value);
+        const parts = this.value.split('.');
+        if (parts[1] && parts[1].length > 3) {
+            parts[1] = parts[1].slice(0, 3); // обрезаем до 3 знаков после запятой
+            this.value = parts.join('.');
+        }
+    });
+
 
     function fillTable(data, startTime, period) {
         const newRow = resultTable.insertRow()

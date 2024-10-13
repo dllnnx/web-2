@@ -11,7 +11,7 @@ public class Validator {
     private Float x;
     private Float y;
     private Float r;
-    private static final List<Float> validX = List.of(-2F, -1.5F, -1F, -0.5F, 0F, 0.5F, 1F, 1.5F, 2F);
+    private static final List<Float> validX = List.of(-5F, -4F, -3F, -2F, -1F, 0F, 1F, 2F, 3F);
     private static final List<Float> validR = List.of(1F, 1.5F, 2F, 2.5F, 3F);
 
     public Validator (HttpServletRequest request) {
@@ -50,7 +50,7 @@ public class Validator {
         if (Objects.isNull(yParam) || yParam.isEmpty()) return false;
         try {
             this.y = Float.parseFloat(yParam);
-            return -3 <= y && y <= 5;
+            return -3 <= y && y <= 3;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -60,29 +60,19 @@ public class Validator {
         if (Objects.isNull(rParam) || rParam.isEmpty()) return false;
         try {
             this.r = Float.parseFloat(rParam);
-            return validR.contains(r);
+            return 2 <= r && r <= 5;
         } catch (NumberFormatException e) {
             return false;
         }
     }
 
     public boolean checkArea() {
-        if (x < 0 && y < 0) {
-            return false;
-        }
-        if (x > 0 && y > 0) {
-            if ((x * x + y * y) > (r / 2) * (r / 2)) {
-                return false;
-            }
-        }
-        if (x >= 0 && y <= 0) {
-            if (y < 2 * x - r) {
-                return false;
-            }
-        }
-        if (x <= 0 && y >= 0) {
-            return (x >= -r) && (y <= r);
-        }
+        if (x > 0 && y > 0 && (x * x + y * y) > (r / 2) * (r / 2)) return false; // 1 четверть
+        if (x < 0 && y > 0) return false; // 2 четверть
+        if (x < 0 && y < 0 && y < - x - (r / 2)) return false; // 3 четверть
+        if (x > 0 && y < 0 && (x > r || y < - r)) return false; // 4 четверть
+        if (x == 0 && (y > (r/2) || (y < - r))) return false; // ось ОУ
+        if (y == 0 && (x > r || x < - (r / 2))) return false; // ось ОХ
         return true;
     }
 }

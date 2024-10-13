@@ -16,8 +16,12 @@ class CanvasPainter{
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.drawGraph(r);
         this.drawAxes();
-        this.setPointerAtDot(3);
         this.setPointerAtDot(1);
+        this.setPointerAtDot(2);
+        this.setPointerAtDot(3);
+        this.setPointerAtDot(4);
+        this.setPointerAtDot(5);
+        this.setPointerAtDot(-1);
     }
 
     drawAxes() {
@@ -27,17 +31,19 @@ class CanvasPainter{
     }
 
     drawGraph(r){
-        const totalPoints = 7;
+        const totalPoints = 12;
         const pointInPixels = this.SIZE / totalPoints;
         const zero = this.SIZE / 2;
+
+        // квадрат
         this.ctx.fillStyle = "rgba(79,124,59,0.7)";
-        this.ctx.fillRect(zero, zero, - r * pointInPixels, - r * pointInPixels)
+        this.ctx.fillRect(zero, zero, r * pointInPixels, r * pointInPixels)
 
         // треугольник
         this.ctx.beginPath();
         this.ctx.moveTo(zero, zero);
-        this.ctx.lineTo(zero + (r / 2) * pointInPixels, zero);
-        this.ctx.lineTo(zero, zero + r * pointInPixels);
+        this.ctx.lineTo(zero - (r / 2) * pointInPixels, zero);
+        this.ctx.lineTo(zero, zero + (r / 2) * pointInPixels);
         this.ctx.lineTo(zero, zero);
         this.ctx.fill();
 
@@ -57,8 +63,8 @@ class CanvasPainter{
         this.ctx.fill();
     }
 
-    setPointerAtDot(max_r = 3) {
-        const totalPoints = 7;
+    setPointerAtDot(max_r = 5) {
+        const totalPoints = 12;
         const pointInPixels = this.SIZE / totalPoints;
         this.ctx.textAlign = "center";
         this.ctx.textBaseline = "middle";
@@ -93,7 +99,7 @@ class CanvasPainter{
         this.ctx.fillStyle = success
             ? this.COLOR_GREEN
             : this.COLOR_RED;
-        const totalPoints = 7;
+        const totalPoints = 12;
         const pointInPixels = this.SIZE / totalPoints;
         this.ctx.beginPath();
         this.ctx.arc(

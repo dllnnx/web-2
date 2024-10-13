@@ -38,26 +38,20 @@
 
     <div id="select-container">
         <div id="X-choice">
+            <label><input type="radio" name="X-radio-group" value="-5">-5</label>
+            <label><input type="radio" name="X-radio-group" value="-4">-4</label>
+            <label><input type="radio" name="X-radio-group" value="-3">-3</label>
             <label><input type="radio" name="X-radio-group" value="-2">-2</label>
-            <label><input type="radio" name="X-radio-group" value="-1.5">-1.5</label>
             <label><input type="radio" name="X-radio-group" value="-1">-1</label>
-            <label><input type="radio" name="X-radio-group" value="-0.5">-0.5</label>
             <label><input type="radio" name="X-radio-group" value="0">0</label>
-            <label><input type="radio" name="X-radio-group" value="0.5">0.5</label>
             <label><input type="radio" name="X-radio-group" value="1">1</label>
-            <label><input type="radio" name="X-radio-group" value="1.5">1.5</label>
             <label><input type="radio" name="X-radio-group" value="2">2</label>
+            <label><input type="radio" name="X-radio-group" value="3">3</label>
         </div>
 
-        <input type="number" id="Y-choice" placeholder="от -3 до 5" step="0.001" min="-3" max="5">
+        <input type="number" id="Y-choice" placeholder="от -3 до 3" step="0.001" min="-3" max="3">
 
-        <div id="R-choice">
-            <label><input type="checkbox" name="R-checkbox-group" value="1">1</label>
-            <label><input type="checkbox" name="R-checkbox-group" value="1.5">1.5</label>
-            <label><input type="checkbox" name="R-checkbox-group" value="2">2</label>
-            <label><input type="checkbox" name="R-checkbox-group" value="2.5">2.5</label>
-            <label><input type="checkbox" name="R-checkbox-group" value="3">3</label>
-        </div>
+        <input type="number" id="R-choice" placeholder="от 2 до 5" step="0.001" min="2" max="5">
 
         <div id="buttons-container">
             <button id="clear-button">очистить</button>
