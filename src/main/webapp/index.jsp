@@ -55,12 +55,12 @@
 
         <div id="buttons-container">
             <button id="clear-button">очистить</button>
-            <button id="submit-button">проверить</button>
+            <button id="submit-button">тапнуть хомяка</button>
         </div>
     </div>
 
     <div id="canvas-container">
-        <canvas id="graph" width="300" height="300"></canvas>
+        <canvas id="graph" width="400" height="400"></canvas>
     </div>
 </div>
 <div id="table-container">

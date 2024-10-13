@@ -3,17 +3,19 @@
 }
 
 body {
-    background-image: url("images/background.png");
+    background-image: url("images/background.jpg");
     background-size: 100%;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
     font-family: "Montserrat Alternates", serif;
+    font-size: large;
 }
 
 header {
     text-align: center;
-    font-size: large;
-    color: darkslategray;
+    font-size: larger;
     font-family: "Poiret One", fantasy;
+    font-weight: bold;
+    background-color: rgba(217, 217, 217, 0.66);
 }
 
 #main-container {
@@ -22,13 +24,14 @@ header {
     justify-content: space-evenly;
     flex-direction: row;
     margin-top: 3%;
+    background-color: rgba(217, 217, 217, 0.66);
 }
 
 #main-container > #labels-container {
     display: flex;
     width: 9%;
     flex-direction: column;
-    gap: 10%
+    gap: 10%;
 }
 
 /* стиль для label через дочерние селекторы */
@@ -45,32 +48,35 @@ header {
 
 /* канва */
 #main-container > #canvas-container > canvas {
-    background: url("images/trump.png");
+    background: url("images/hamster.jpeg");
+    background-size: 100%;
     backdrop-filter: blur(10px);
 }
 
 /* таблица */
 #table-container > table {
     table-layout: fixed;
-    width: 45%;
+    width: 50%;
     border-collapse: collapse;
     font-family: inherit;
     margin-left: 3%;
+    text-align: center;
 }
 
 /* оформление таблицы */
 #table-container > table, #table-container > table th, #table-container > table td {
     border: 1px solid black;
     text-align: center;
-    font-size: small;
+    font-size: medium;
     padding: 2%;
+    background-color: rgba(217, 217, 217, 0.66);
 }
 
 /* заголовки таблицы */
 #table-container > table th {
     font-weight: bold;
     color: darkslategray;
-    background-color: rgba(202, 204, 203, 0.4);
+    background-color: rgba(183, 170, 196, 0.61);
 }
 
 /* выравнивание ширины столбцов таблицы */
@@ -80,7 +86,8 @@ header {
 #result-table td:nth-child(1),
 #result-table td:nth-child(2),
 #result-table td:nth-child(3) {
-    width: 50px;
+    width: 70px;
+    text-align: center;
 }
 
 #result-table th:nth-child(4), /* результат */
@@ -99,7 +106,7 @@ header {
     color: #f1f1f1;
     padding: 1% 3%;
     text-align: center;
-    font-size: medium;
+    font-size: large;
     margin: 1% 2%;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -181,17 +188,6 @@ header {
     box-shadow: 0 0 10px #467373;
 }
 
-/* селекторы потомков и псевдоэлементов для канвы */
-#main-container #canvas-container::before {
-    content: "Попадания";
-    font-size: medium;
-    font-style: italic;
-    color: darkslategray;
-    display: block;
-    margin-bottom: 3%;
-    text-align: center;
-}
-
 /* селектор псевдоклассов для канвы */
 #main-container #canvas-container canvas:hover {
     box-shadow: 0 0 10px darkslategray;
@@ -199,13 +195,13 @@ header {
 
 /* класс для зеленого текста (успех) */
 .success {
-    color: #5c985c;
+    color: #067306;
     font-weight: bold;
 }
 
 /* класс для красного текста (ошибка) */
 .fail {
-    color: #c53c3c;
+    color: #8f0000;
     font-weight: bold;
 }
 

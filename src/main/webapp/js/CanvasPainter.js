@@ -1,5 +1,5 @@
     class CanvasPainter{
-        SIZE = 300;
+        SIZE = 400;
         LINE_WIDTH = 2;
         TEXT_SIZE = 20;
         TEXT_MARGIN = 15;
@@ -102,32 +102,19 @@
         }
 
         drawPoint(x, y, success = true) {
-            this.ctx.fillStyle = success
-                ? this.COLOR_GREEN
-                : this.COLOR_RED;
+            const image = new Image();
+            image.src = success
+                ? "images/coin.png"
+                : "images/fail.png"
             const totalPoints = 12;
             const pointInPixels = this.SIZE / totalPoints;
-            this.ctx.beginPath();
-            this.ctx.arc(
-                this.SIZE / 2 + pointInPixels * x,
-                this.SIZE / 2 - y * pointInPixels,
-                3,
-                0,
-                Math.PI * 2,
-            );
-            this.ctx.fill();
 
-            this.ctx.beginPath();
-            this.ctx.fillStyle = "black"
-            this.ctx.lineWidth = 1.5
-            this.ctx.arc(
-                this.SIZE / 2 + pointInPixels * x,
-                this.SIZE / 2 - y * pointInPixels,
-                3,
-                0,
-                Math.PI * 2
-            )
-            this.ctx.stroke();
+            image.onload = () => {
+                const imageX = this.SIZE / 2 + pointInPixels * x - 18 / 2;
+                const imageY = this.SIZE / 2 - y * pointInPixels - 15 / 2;
+
+                this.ctx.drawImage(image, imageX, imageY, 18, 15);
+            };
         }
 
         parseClick(event) {
