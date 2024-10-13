@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fcc23a3-1866-443e-888d-d2cd83c52814" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/web_2_Web_exploded.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/dllnnx/web2/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dllnnx/web2/Validator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/CanvasPainter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/CanvasPainter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/js/onload.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/onload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -263,7 +257,7 @@
       <option name="presentableId" value="Default" />
       <updated>1728741126346</updated>
       <workItem from="1728741127639" duration="302000" />
-      <workItem from="1728741442976" duration="36688000" />
+      <workItem from="1728741442976" duration="37313000" />
     </task>
     <servers />
   </component>

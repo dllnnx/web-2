@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     // изначальная отрисовка канвы
-    let canvasPrinter = new CanvasPainter();
-    canvasPrinter.redrawAll(0);
+    let canvasPainter = new CanvasPainter(sendRequest);
+    canvasPainter.redrawAll(0);
 
 
     const submitButton = document.getElementById("submit-button");
@@ -30,11 +30,17 @@ document.addEventListener('DOMContentLoaded', function () {
             success: function (data) {
                 console.log(data)
                 const period = data.scriptTime
-                canvasPrinter.drawPoint(x, y, data.isHit);
+                canvasPainter.drawPoint(x, y, data.isHit);
                 fillTable(data, startTime, period);
             },
             error: function (xhr, status, error) {
                 console.error('Error:', error);
+                if (xhr.status === 400) {
+                    alert("Невалидные данные: проверьте, что координаты находятся в разрешенных диапазонах: \n" +
+                        "-5 <= x <= 3, \n" +
+                        "-3 <= y <= 3, \n" +
+                        "2 <= r <= 5")
+                }
             }
         });
     }
@@ -51,25 +57,31 @@ document.addEventListener('DOMContentLoaded', function () {
     submitButton.addEventListener("click", handleSubmit);
 
 
+    // отслеживание кликов по канве
+    // canvasPainter.canvas.addEventListener('click', function(event) {
+    //     canvasPainter.parseClick(event)
+    // });
+
+
     // очистка полей по нажатию "очистить"
     function clearSelection() {
         xRadios.forEach(radio => radio.checked = false);
         yInput.value = '';
         rInput.value = '';
-        canvasPrinter.redrawAll(0);
+        canvasPainter.redrawAll(0);
     }
     clearButton.addEventListener("click", clearSelection);
 
 
     // отрисовка канвы при изменении R
     rInput.addEventListener('input', function () {
-        if (validateRInput(this.value)) canvasPrinter.redrawAll(this.value);
+        if (validateRInput(this.value)) canvasPainter.redrawAll(this.value);
         const parts = this.value.split('.');
         if (parts[1] && parts[1].length > 3) {
             parts[1] = parts[1].slice(0, 3); // обрезаем до 3 знаков после запятой
             this.value = parts.join('.');
         }
-        if (this.value === '') canvasPrinter.redrawAll(0);
+        if (this.value === '') canvasPainter.redrawAll(0);
     });
 
     yInput.addEventListener('input', function () {

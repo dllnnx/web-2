@@ -1,7 +1,6 @@
 const yInput = document.getElementById("Y-choice");
 const rInput = document.getElementById("R-choice")
 const xGroup = document.querySelector('input[name="X-radio-group"]')
-let canvasPrinter = new CanvasPainter();
 
 function validateXChoice() {
     const selectedX = document.querySelector('input[name="X-radio-group"]:checked');
