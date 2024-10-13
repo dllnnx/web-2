@@ -1,5 +1,6 @@
 plugins {
-    id("java")
+    id 'java'
+    id 'war'
 }
 
 group = "org.example"
@@ -12,6 +13,10 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
 
 tasks.test {
@@ -21,7 +26,7 @@ tasks.test {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'ru.dllnnx.web.Main'
+                'Main-Class': 'ru.dllnnx.web2.Main'
         )
     }
     from {
@@ -34,16 +39,21 @@ def remoteHost = "helios.cs.ifmo.ru"
 def remoteUser = "s408536"
 def remoteDir = "~/web-2/"
 
-def jarFile = "build/libs/server.jar"
+def warFile = "build/libs/web-2-1.0-SNAPSHOT.war"
 
-tasks.register('copyJarToServer', Exec) {
-    dependsOn jar
+war {
+    archiveBaseName.set("server")
+    archiveVersion.set("")
+}
+
+tasks.register('copyWarToServer', Exec) {
+    dependsOn build
 
     doLast {
-        println "Copying JAR to ${remoteUser}@${remoteHost}:${remoteDir}"
+        println "Copying WAR to ${remoteUser}@${remoteHost}:${remoteDir}"
     }
 
-    commandLine 'scp', "-P 2222" , jarFile, "${remoteUser}@${remoteHost}:${remoteDir}"
+    commandLine 'scp', "-P 2222" , warFile, "${remoteUser}@${remoteHost}:${remoteDir}"
 
     doLast {
         println 'JAR file copied successfully.'
