@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // отправка запроса по нажатию "проверить"
     function sendRequest(x, y, r) {
-        const start = new Date().getTime();
         const startTime = new Date().toLocaleString();
         $.ajax({
             url: `controller-servlet`,
@@ -24,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 "x": x,
                 "y": y,
                 "r": r,
-                "start": start,
                 "startTime": startTime
             },
             success: function (data) {
@@ -109,6 +107,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         newRow.insertCell(4).textContent = startTime.toLocaleString();
-        newRow.insertCell(5).textContent = period + 'ms';
+        newRow.insertCell(5).textContent = period + 'mсs';
     }
 });

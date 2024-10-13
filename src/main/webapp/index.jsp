@@ -83,7 +83,7 @@
                     <td><%=result.getR()%></td>
                     <td class="<%=result.getHTMLClass()%>"><%=result.isHitToString()%></td>
                     <td><%=result.getStartTime()%></td>
-                    <td><%=result.getScriptTime() + "ms"%></td>
+                    <td><%=result.getScriptTime() + "mсs"%></td>
                 </tr>
             <%}%>
         </tbody>

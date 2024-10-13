@@ -20,7 +20,7 @@ public class AreaCheckServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String startTime = req.getParameter("startTime");
-        long start = Long.parseLong(req.getParameter("start"));
+        long start = System.nanoTime();
 
         Validator validator = new Validator(req);
         Result result = validator.getResult();
@@ -33,6 +33,8 @@ public class AreaCheckServlet extends HttpServlet {
             }
 
             boolean isHit = validator.checkArea();
+
+            long scriptTime = (long) ((System.nanoTime() - start) * 0.001);
             ResultBean bean = (ResultBean) req.getSession().getAttribute("bean");
             if (bean == null) {
                 bean = new ResultBean();
@@ -41,7 +43,7 @@ public class AreaCheckServlet extends HttpServlet {
 
             result.setHit(isHit);
             result.setStartTime(startTime);
-            result.setScriptTime(new Date().getTime() - start);
+            result.setScriptTime(scriptTime);
             bean.addResult(result);
             req.getSession().setAttribute("bean", bean);
 
