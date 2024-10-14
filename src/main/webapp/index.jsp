@@ -12,8 +12,8 @@
         ? new ResultBean()
         : (ResultBean) session.getAttribute("bean");
     %>
-    <title>RRRAAAAHHH</title>
-    <link rel="icon" type="image/jpg" href="images/icon.png">
+    <title>Hamster Kombat</title>
+    <link rel="icon" type="image/png" href="images/icon.png">
     <link href="style.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
